@@ -27,8 +27,20 @@ view: orders {
 
   dimension: status {
     type: string
-    sql: ${TABLE}.status ;;
-  }
+    sql: ${TABLE}.status;;
+    }
+
+    dimension: testing {
+    type: string
+    sql: {% if orders.status._is_filtered %}
+   'cancelled'
+  {% else %}
+    'pending'
+  {% endif %};;
+    }
+
+
+
 
   dimension: user_id {
     type: number
